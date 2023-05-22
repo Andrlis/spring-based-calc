@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.*;
 public class HomeController {
 
     @GetMapping
-    public String home() {
-        System.out.println("home page call");
+    public String showHomePage() {
         return "home";
     }
 }
