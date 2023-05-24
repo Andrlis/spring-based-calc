@@ -4,6 +4,7 @@ import by.tms.calc.dto.UserLoginDTO;
 import by.tms.calc.dto.UserRegistrationDTO;
 import by.tms.calc.entity.User;
 import by.tms.calc.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +23,7 @@ import java.util.Optional;
 @RequestMapping("/user")
 public class UserController {
 
+    @Autowired
     UserService userService;
 
     @GetMapping("/login")

@@ -24,7 +24,7 @@ public class Operation {
     public Operation() {
     }
 
-    public OperationBuilder builder() {
+    public static OperationBuilder builder() {
         return new Operation().new OperationBuilder();
     }
 
@@ -66,6 +66,8 @@ public class Operation {
             Operation.this.createdAt = createdAt;
             return this;
         }
+
+        public Operation build(){return Operation.this;}
     }
 
     public long getId() {

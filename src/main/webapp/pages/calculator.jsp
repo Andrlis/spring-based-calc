@@ -43,7 +43,7 @@
             </div>
             <div class="input-group mb-3 p-3">
                 <label class="input-group-text" for="calc-result">Result:</label>
-                <input class="form-control" disabled id="calc-result" name="calc-result">
+                <input class="form-control" disabled id="calc-result" name="calc-result" value="${operation.result}">
             </div>
             <div class="mb-3 d-grid p-3">
                 <button class="btn btn-primary">Calculate</button>
