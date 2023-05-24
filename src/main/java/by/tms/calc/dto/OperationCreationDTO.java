@@ -1,5 +1,6 @@
 package by.tms.calc.dto;
 
+import by.tms.calc.entity.OperationType;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -18,7 +19,7 @@ public class OperationCreationDTO {
 
     @NotBlank(message = "Not Black")
     @NotEmpty(message = "Not Empty")
-    private String operationType;
+    private OperationType operationType;
 
     public double getOperand1() {
         return operand1;
@@ -36,11 +37,11 @@ public class OperationCreationDTO {
         this.operand2 = operand2;
     }
 
-    public String getOperationType() {
+    public OperationType getOperationType() {
         return operationType;
     }
 
-    public void setOperationType(String operationType) {
+    public void setOperationType(OperationType operationType) {
         this.operationType = operationType;
     }
 }

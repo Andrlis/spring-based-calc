@@ -51,29 +51,22 @@
                                                               href="#">Previous</a></li>
                         </c:when>
                         <c:otherwise>
-                            <c:url value="/user/history" var="prevPageURL">
-                                <c:param name="username" value="${requestScope.account.username}"/>
-                                <c:param name="page" value="${requestScope.page - 1}"/>
-                            </c:url>
                             <li class="page-item"><a class="page-link"
-                                                     href='<c:out value="${prevPageURL}" />'>Previous</a></li>
+                                                     href="/user/history/page/${requestScope.page - 1}">Previous</a>
+                            </li>
                         </c:otherwise>
                     </c:choose>
 
 
                     <c:forEach var="i" begin="1" end="${requestScope.countOfPages}">
-                        <c:url value="/user/history" var="pageURL">
-                            <c:param name="username" value="${requestScope.account.username}"/>
-                            <c:param name="page" value="${i}"/>
-                        </c:url>
                         <c:choose>
                             <c:when test="${requestScope.page == null || requestScope.page == i}">
                                 <li class="page-item active"><a class="page-link"
-                                                                href='<c:out value="${pageURL}" />'><c:out
+                                                                href="/user/history/page/${i}"><c:out
                                         value="${i}"/></a></li>
                             </c:when>
                             <c:otherwise>
-                                <li class="page-item"><a class="page-link" href='<c:out value="${pageURL}" />'><c:out
+                                <li class="page-item"><a class="page-link" href="/user/history/page/${i}"><c:out
                                         value="${i}"/></a></li>
                             </c:otherwise>
                         </c:choose>
@@ -86,11 +79,8 @@
                             </li>
                         </c:when>
                         <c:otherwise>
-                            <c:url value="/user/history" var="nextPageURL">
-                                <c:param name="username" value="${requestScope.account.username}"/>
-                                <c:param name="page" value="${requestScope.page + 1}"/>
-                            </c:url>
-                            <li class="page-item"><a class="page-link" href='<c:out value="${nextPageURL}" />'>Next</a>
+                            <li class="page-item"><a class="page-link"
+                                                     href="/user/history/page/${requestScope.page + 1}">Next</a>
                             </li>
                         </c:otherwise>
                     </c:choose>

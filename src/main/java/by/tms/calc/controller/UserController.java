@@ -79,7 +79,6 @@ public class UserController {
         for (FieldError fieldError : fieldErrors) {
             model.addAttribute(fieldError.getField(), fieldError.getDefaultMessage());
         }
-
     }
 
     @GetMapping("/history")
