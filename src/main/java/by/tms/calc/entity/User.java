@@ -13,44 +13,55 @@ public class User {
 
     private String password;
 
-    public User(String name, String username, String password) {
-        this.name = name;
-        this.username = username;
-        this.password = password;
+    public User() {
     }
 
-    public User() {
+    public static UserBuilder builder() {
+        return new User().new UserBuilder();
+    }
+
+    public class UserBuilder {
+        private UserBuilder() {
+        }
+
+        public UserBuilder setId(int id) {
+            User.this.id = id;
+            return this;
+        }
+
+        public UserBuilder setName(String name) {
+            User.this.name = name;
+            return this;
+        }
+
+        public UserBuilder setUsername(String username) {
+            User.this.username = username;
+            return this;
+        }
+
+        public UserBuilder setPassword(String password) {
+            User.this.password = password;
+            return this;
+        }
+
+        public User build() {
+            return User.this;
+        }
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

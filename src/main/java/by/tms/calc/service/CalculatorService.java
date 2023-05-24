@@ -12,18 +12,23 @@ public class CalculatorService {
 	private OperationStorage operationStorage;
 
 	public Operation calculate(Operation operation) {
-		switch (OperationType.valueOf(operation.getOperationType())) {
+		double result;
+		switch (operation.getOperationType()) {
 			case SUM:
-				operation.setResult(operation.getOperand1() + operation.getOperand2());
+				result = operation.getOperand1() + operation.getOperand2();
+				operation.builder().setResult(result);
 				return operation;
 			case SUB:
-				operation.setResult(operation.getOperand1() - operation.getOperand2());
+				result = operation.getOperand1() - operation.getOperand2();
+				operation.builder().setResult(result);
 				return operation;
 			case MUL:
-				operation.setResult(operation.getOperand1() * operation.getOperand2());
+				result = operation.getOperand1() * operation.getOperand2();
+				operation.builder().setResult(result);
 				return operation;
 			case DIV:
-				operation.setResult(operation.getOperand1() / operation.getOperand2());
+				result = operation.getOperand1() / operation.getOperand2();
+				operation.builder().setResult(result);
 				return operation;
 		}
 		return operation;
