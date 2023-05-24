@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -28,12 +29,23 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/operation/calculate">Calculate</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">History</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/user/login">Login</a>
-                </li>
+                <c:if test="${sessionScope.user != null}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/history">History</a>
+                    </li>
+                </c:if>
+                <c:choose>
+                    <c:when test="${sessionScope.user != null}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/user/logout">Log out</a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/user/login">Login</a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
             </ul>
         </div>
     </div>

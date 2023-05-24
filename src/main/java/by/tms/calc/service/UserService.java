@@ -1,5 +1,7 @@
 package by.tms.calc.service;
 
+import by.tms.calc.dto.UserLoginDTO;
+import by.tms.calc.dto.UserRegistrationDTO;
 import by.tms.calc.entity.User;
 import by.tms.calc.storage.UserStorage;
 
@@ -12,14 +14,17 @@ public class UserService {
 
     private UserStorage userStorage;
 
-    public void save(User user){};
-
-    public Optional<User> findByUserName(String username){
-        return Optional.empty();
+    public void save(UserRegistrationDTO userRegistrationDTO) {
+        User user = User.builder()
+                .setUsername(userRegistrationDTO.getUsername())
+                .setPassword(userRegistrationDTO.getPassword())
+                .setName(userRegistrationDTO.getName())
+                .build();
+        userStorage.save(user);
     }
 
-    public Optional<User> loginUser(User user){
-        return Optional.empty();
+    public Optional<User> loginUser(UserLoginDTO userLoginDTO) {
+        return userStorage.getByUsername(userLoginDTO.getUsername());
     }
 
 
