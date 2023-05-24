@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Login</title>
@@ -18,11 +19,15 @@
         <form action="calculate" method="post">
             <div class="input-group mb-3 p-3">
                 <label class="input-group-text" for="userame">Username</label>
-                <input class="form-control" type="text" id="userame" name="userame" required>
+                <input class="form-control" type="text" id="userame" name="userame">
+                <br>
+                <p class="error-message">${username}</p>
             </div>
             <div class="input-group mb-3 p-3">
                 <label class="input-group-text" for="password">Password</label>
-                <input class="form-control" type="password" id="password" name="password" required>
+                <input class="form-control" type="password" id="password" name="password">
+                <br>
+                <p class="error-message">${password}</p>
             </div>
             <div class="mb-3 d-grid p-3">
                 <button class="btn btn-primary">Login</button>

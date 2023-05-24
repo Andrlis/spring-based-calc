@@ -1,17 +1,33 @@
-package by.tms.entity;
+package by.tms.calc.entity;
+
 
 /**
  * @author Andrei Lisouski (Andrlis)
  */
 public class User {
+    private long id;
+
     private String name;
+
     private String username;
+
     private String password;
 
     public User(String name, String username, String password) {
         this.name = name;
         this.username = username;
         this.password = password;
+    }
+
+    public User() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {

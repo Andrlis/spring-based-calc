@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Registration</title>
@@ -15,22 +16,24 @@
 <jsp:include page="_header.jsp"/>
 <div class="col-md-4 offset-md-4 align-items-center mt-3">
     <div class="card">
-        <form action="calculate" method="post">
+        <form action="/user/register" method="post">
             <div class="input-group mb-3 p-3">
                 <label class="input-group-text" for="name">Name</label>
-                <input class="form-control" type="text" id="name" name="name" required>
+                <input class="form-control" type="text" id="name" name="name">
+                <br>
+                <p class="error-message">${name}</p>
             </div>
             <div class="input-group mb-3 p-3">
                 <label class="input-group-text" for="username">Username</label>
-                <input class="form-control" type="text" id="username" name="userame" required>
+                <input class="form-control" type="text" id="username" name="username">
+                <br>
+                <p class="error-message">${username}</p>
             </div>
             <div class="input-group mb-3 p-3">
-                <label class="input-group-text" for="password1">Password</label>
-                <input class="form-control" type="password" id="password1" name="password1" required>
-            </div>
-            <div class="input-group mb-3 p-3">
-                <label class="input-group-text" for="password2">Repeat password</label>
-                <input class="form-control" type="password" id="password2" name="password2" required>
+                <label class="input-group-text" for="password">Password</label>
+                <input class="form-control" type="password" id="password" name="password">
+                <br>
+                <p class="error-message">${password}</p>
             </div>
             <div class="mb-3 d-grid p-3">
                 <button class="btn btn-primary">Register</button>

@@ -19,21 +19,27 @@
         <form action="calculate" method="post">
             <div class="input-group mb-3 p-3">
                 <label class="input-group-text" for="operand1">Operand 1:</label>
-                <input class="form-control" type="text" id="operand1" name="operand1" required>
+                <input class="form-control" type="text" id="operand1" name="operand1">
+                <br>
+                <p class="error-message">${operand1}</p>
             </div>
             <div class="input-group mb-3 p-3">
                 <label class="input-group-text" for="operand2">Operand 2:</label>
-                <input class="form-control" type="text" id="operand2" name="operand2" required>
+                <input class="form-control" type="text" id="operand2" name="operand2">
+                <br>
+                <p class="error-message">${operand2}</p>
             </div>
             <div class="input-group mb-3 p-3">
                 <label class="input-group-text" for="operation-type">Operation:</label>
-                <select class="form-select" id="operation-type" name="operation-type" required>
+                <select class="form-select" id="operation-type" name="operation-type">
                     <option value="default" disabled selected>Select operation</option>
                     <option value="SUM">SUM</option>
                     <option value="SUB">DIV</option>
                     <option value="MUL">MUL</option>
                     <option value="DIV">DIV</option>
                 </select>
+                <br>
+                <p class="error-message">${operation-type}</p>
             </div>
             <div class="input-group mb-3 p-3">
                 <label class="input-group-text" for="calc-result">Result:</label>

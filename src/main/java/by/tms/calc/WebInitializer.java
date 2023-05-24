@@ -1,4 +1,4 @@
-package by.tms;
+package by.tms.calc;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

@@ -1,14 +1,21 @@
-package by.tms.entity;
+package by.tms.calc.entity;
+
 
 /**
  * @author Andrei Lisouski (Andrlis)
  */
 public class Operation {
 
+    private long id;
+
     private double operand1;
+
     private double operand2;
+
     private String operationType;
     private double result;
+
+    private User author;
 
     public Operation(double operand1, double operand2, String operationType) {
         this.operand1 = operand1;
@@ -16,9 +23,18 @@ public class Operation {
         this.operationType = operationType;
     }
 
-    public Operation(double operand1, double operand2, String operationType, double result) {
+    public Operation(double operand1, double operand2, String operationType, double result, User author) {
         this(operand1, operand2, operationType);
         this.result = result;
+        this.author = author;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public double getOperand1() {
@@ -39,6 +55,14 @@ public class Operation {
 
     public void setResult(double result) {
         this.result = result;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
     @Override

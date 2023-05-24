@@ -28,3 +28,7 @@
     background-color: #ddd;
     color: black;
 }
+
+.error-message {
+    color: red;
+}

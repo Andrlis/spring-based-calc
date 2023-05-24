@@ -1,4 +1,4 @@
-package by.tms.entity;
+package by.tms.calc.entity;
 
 /**
  * @author Andrei Lisouski (Andrlis)
