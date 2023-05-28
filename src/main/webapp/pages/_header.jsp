@@ -48,6 +48,15 @@
                 </c:choose>
             </ul>
         </div>
+        <c:if test="${sessionScope.user != null}">
+            <form class="form-inline my-2 my-lg-0">
+                <span class="navbar-text">
+                        ${sessionScope.user.username}
+                </span>
+                <img class="img-thumbnail rounded-circle" style="width: 50px; height: 50px;"
+                     src="https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png">
+            </form>
+        </c:if>
     </div>
 </nav>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
