@@ -2,6 +2,8 @@ package by.tms.calc.controller;
 
 import by.tms.calc.dto.OperationCreationDTO;
 import by.tms.calc.entity.Operation;
+import by.tms.calc.entity.SessionUser;
+import by.tms.calc.entity.User;
 import by.tms.calc.service.CalculatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +37,7 @@ public class OperationController {
     @PostMapping("/calculate")
     public String calculate(@Valid OperationCreationDTO operationCreationDTO,
                             BindingResult bindingResult,
+                            HttpSession httpSession,
                             Model model){
         if (bindingResult.hasErrors()) {
             setValidationErrors(bindingResult, model);
@@ -45,6 +49,11 @@ public class OperationController {
 
         if(calculationResult.isPresent()) {
             model.addAttribute("operation", calculationResult.get());
+
+            SessionUser sessionUser = (SessionUser)httpSession.getAttribute("user");
+            if(sessionUser != null){
+                calculatorService.save(calculationResult.get(), sessionUser);
+            }
         }
 
         return "calculator";

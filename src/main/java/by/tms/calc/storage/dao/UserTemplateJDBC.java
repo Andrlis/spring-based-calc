@@ -36,7 +36,7 @@ public class UserTemplateJDBC implements UserStorage {
     @Override
     public Optional<User> getByUsername(String username) {
         try {
-            return Optional.of(jdbcTemplateObject.queryForObject(GET_BY_USERNAME_SQL, new UserMapper(), username));
+            return Optional.of(jdbcTemplateObject.queryForObject(GET_BY_USERNAME_SQL, new UserDaoMapper(), username));
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }

@@ -1,13 +1,13 @@
 package by.tms.calc.service;
 
 import by.tms.calc.dto.OperationCreationDTO;
-import by.tms.calc.entity.Operation;
-import by.tms.calc.entity.OperationType;
-import by.tms.calc.entity.User;
+import by.tms.calc.entity.*;
+import by.tms.calc.mapper.SessionUserMapper;
 import by.tms.calc.storage.OperationStorage;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -51,5 +51,19 @@ public class CalculatorService {
 		return Optional.empty();
 	}
 
+	public void save(Operation operation, SessionUser sessionUser) {
+		operation.builder()
+				.setCreatedAt(LocalDateTime.now())
+				.setAuthor(SessionUserMapper.toUser(sessionUser));
+		operationStorage.save(operation);
+	}
 
+	public OperationHistoryPage getHistoryPage(int pageNumber, SessionUser sessionUser){
+		User user = SessionUserMapper.toUser(sessionUser);
+		OperationHistoryPage historyPage = new OperationHistoryPage(pageNumber);
+		List<Operation> operationList = operationStorage.getAllByUserWithOffset(user, OperationHistoryPage.OPERATIONS_PER_PAGE, pageNumber);
+		historyPage.setOperations(operationList);
+		historyPage.setCountOfAllPages((int) Math.ceil(operationStorage.getCountOfOperationsPerUser(user)/OperationHistoryPage.OPERATIONS_PER_PAGE));
+		return historyPage;
+	}
 }

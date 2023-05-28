@@ -53,7 +53,7 @@
                 <span class="navbar-text">
                         ${sessionScope.user.username}
                 </span>
-                <img class="img-thumbnail rounded-circle" style="width: 50px; height: 50px;"
+                <img class="img-thumbnail rounded-circle" style="width: 30px; height: 30px;"
                      src="https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png">
             </form>
         </c:if>

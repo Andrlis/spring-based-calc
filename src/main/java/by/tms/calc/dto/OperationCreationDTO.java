@@ -9,16 +9,16 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 public class OperationCreationDTO {
 
-    @NotBlank(message = "Not Black")
-    @NotEmpty(message = "Not Empty")
+//    @NotBlank(message = "Not Null")
+//    @NotEmpty(message = "Not Empty")
     private double operand1;
 
-    @NotBlank(message = "Not Black")
-    @NotEmpty(message = "Not Empty")
+//    @NotBlank(message = "Not Black")
+//    @NotEmpty(message = "Not Empty")
     private double operand2;
 
-    @NotBlank(message = "Not Black")
-    @NotEmpty(message = "Not Empty")
+//    @NotBlank(message = "Not Black")
+//    @NotEmpty(message = "Not Empty")
     private OperationType operationType;
 
     public double getOperand1() {

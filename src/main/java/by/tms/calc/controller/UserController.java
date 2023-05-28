@@ -2,7 +2,11 @@ package by.tms.calc.controller;
 
 import by.tms.calc.dto.UserLoginDTO;
 import by.tms.calc.dto.UserRegistrationDTO;
+import by.tms.calc.entity.OperationHistoryPage;
+import by.tms.calc.entity.SessionUser;
 import by.tms.calc.entity.User;
+import by.tms.calc.mapper.UserMapper;
+import by.tms.calc.service.CalculatorService;
 import by.tms.calc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +29,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    CalculatorService calculatorService;
 
     @GetMapping("/login")
     public String showLoginPage() {
@@ -61,7 +68,8 @@ public class UserController {
 
         Optional<User> authenticatedUser = userService.loginUser(userLoginDTO);
         if (authenticatedUser.isPresent()){
-            httpSession.setAttribute("user", authenticatedUser.get());
+            SessionUser sessionUser = UserMapper.toSessionUser(authenticatedUser.get());
+            httpSession.setAttribute("user", sessionUser);
             return "redirect:/";
         }
         else {
@@ -84,12 +92,20 @@ public class UserController {
     }
 
     @GetMapping("/history")
-    public String history() {
+    public String history(HttpSession httpSession, Model model) {
+        SessionUser sessionUser = (SessionUser)httpSession.getAttribute("user");
+        OperationHistoryPage historyPage = calculatorService.getHistoryPage(1, sessionUser);
+
+        model.addAttribute("page", historyPage);
         return "history";
     }
 
     @GetMapping("/history/page/{pageNumber}")
-    public String historyByPage(@PathVariable("pageNumber") int pageNumber){
+    public String historyByPage(@PathVariable("pageNumber") int pageNumber, HttpSession httpSession, Model model){
+        SessionUser sessionUser = (SessionUser)httpSession.getAttribute("user");
+        OperationHistoryPage historyPage = calculatorService.getHistoryPage(pageNumber, sessionUser);
+
+        model.addAttribute("page", historyPage);
         return "history";
     }
 }

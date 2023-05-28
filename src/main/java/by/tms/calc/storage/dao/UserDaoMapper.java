@@ -5,12 +5,11 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Optional;
 
 /**
  * @author Andrei Lisouski (Andrlis) - 28/05/2023 - 13:54
  */
-public class UserMapper implements RowMapper<User> {
+public class UserDaoMapper implements RowMapper<User> {
     @Override
     public User mapRow(ResultSet rs, int rowNum) throws SQLException {
         return User.builder()

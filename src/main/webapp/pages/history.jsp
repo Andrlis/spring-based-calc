@@ -28,7 +28,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="operation" items="${listOfOperations}">
+            <c:forEach var="operation" items="${page.operations}">
                 <tr>
                     <td>${operation.operand1}</td>
                     <td>${operation.operand2}</td>
@@ -42,25 +42,25 @@
         </table>
     </div>
     <div class="row">
-        <c:if test="${requestScope.countOfPages > 1}">
+        <c:if test="${page.countOfAllPages > 1}">
             <div class="text-center">
                 <ul class="pagination justify-content-center">
                     <c:choose>
-                        <c:when test="${requestScope.page == null || requestScope.page == 1}">
+                        <c:when test="${page.pageNumber == null || page.pageNumber == 1}">
                             <li class="page-item disabled"><a class="page-link" aria-disabled="true"
                                                               href="#">Previous</a></li>
                         </c:when>
                         <c:otherwise>
                             <li class="page-item"><a class="page-link"
-                                                     href="/user/history/page/${requestScope.page - 1}">Previous</a>
+                                                     href="/user/history/page/${page.pageNumber - 1}">Previous</a>
                             </li>
                         </c:otherwise>
                     </c:choose>
 
 
-                    <c:forEach var="i" begin="1" end="${requestScope.countOfPages}">
+                    <c:forEach var="i" begin="1" end="${page.countOfAllPages}">
                         <c:choose>
-                            <c:when test="${requestScope.page == null || requestScope.page == i}">
+                            <c:when test="${page.pageNumber == null || page.pageNumber == i}">
                                 <li class="page-item active"><a class="page-link"
                                                                 href="/user/history/page/${i}"><c:out
                                         value="${i}"/></a></li>
@@ -74,13 +74,13 @@
 
 
                     <c:choose>
-                        <c:when test="${requestScope.page == null || requestScope.page == requestScope.countOfPages}">
+                        <c:when test="${page.pageNumber == null || page.pageNumber == page.countOfAllPages}">
                             <li class="page-item disabled"><a class="page-link" aria-disabled="true" href="#">Next</a>
                             </li>
                         </c:when>
                         <c:otherwise>
                             <li class="page-item"><a class="page-link"
-                                                     href="/user/history/page/${requestScope.page + 1}">Next</a>
+                                                     href="/user/history/page/${page.pageNumber + 1}">Next</a>
                             </li>
                         </c:otherwise>
                     </c:choose>

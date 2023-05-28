@@ -30,8 +30,8 @@
                 <p class="error-message">${operand2}</p>
             </div>
             <div class="input-group mb-3 p-3">
-                <label class="input-group-text" for="operation-type">Operation:</label>
-                <select class="form-select" id="operation-type" name="operation-type">
+                <label class="input-group-text" for="operationType">Operation:</label>
+                <select class="form-select" id="operationType" name="operationType">
                     <option value="default" disabled selected>Select operation</option>
                     <option value="SUM">SUM</option>
                     <option value="SUB">DIV</option>
@@ -39,7 +39,7 @@
                     <option value="DIV">DIV</option>
                 </select>
                 <br>
-                <p class="error-message">${operation-type}</p>
+                <p class="error-message">${operationType}</p>
             </div>
             <div class="input-group mb-3 p-3">
                 <label class="input-group-text" for="calc-result">Result:</label>

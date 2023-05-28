@@ -12,6 +12,8 @@ public interface OperationStorage {
     void save(Operation operation);
     void delete(Operation operation);
     void update(Operation operation);
-
     List<Operation> getAllByUser(User user);
+    List<Operation> getAllByUserWithOffset(User user, int limit, int offset);
+
+    int getCountOfOperationsPerUser(User user);
 }
