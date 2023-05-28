@@ -24,7 +24,7 @@ public class User {
         private UserBuilder() {
         }
 
-        public UserBuilder setId(int id) {
+        public UserBuilder setId(long id) {
             User.this.id = id;
             return this;
         }
