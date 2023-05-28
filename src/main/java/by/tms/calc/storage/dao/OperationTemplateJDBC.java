@@ -18,34 +18,41 @@ public class OperationTemplateJDBC implements OperationStorage {
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplateObject;
 
-    OperationTemplateJDBC(DataSource dataSource) {
+    private final String INSERT_SQL = "insert into operations (operand1, operand2, operation_type, result, created_at, author_id) values (?, ?, ?, ?, ?, ?)";
+    private final String DELETE_SQL = "delete from operations where id = ?";
+    private final String UPDATE_SQL = "update operations set result = ? where id = ?";
+    private final String GET_ALL_BY_USER_SQL = "select * from operations join users on operations.author_id = users.user_id where user_id = ?";
+    private final String GET_BY_USER_WITH_OFFSET_SQL = "select * from operations join users on operations.author_id = users.user_id where user_id = ? order by id ASC limit ? offset ?";
+
+
+    public OperationTemplateJDBC(DataSource dataSource) {
         this.dataSource = dataSource;
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
     @Override
     public void save(Operation operation) {
-        String SQL = "insert into operations (operand1, operand2, operation_type, result, created_at, author_id) values (?, ?, ?, ?, ?, ?)";
-        jdbcTemplateObject.update(SQL, operation.getOperand1(), operation.getOperand2(),
+        jdbcTemplateObject.update(INSERT_SQL, operation.getOperand1(), operation.getOperand2(),
                 operation.getOperationType(), operation.getResult(),
                 Timestamp.valueOf(operation.getCreatedAt()), operation.getAuthor().getId());
     }
 
     @Override
     public void delete(Operation operation) {
-        String SQL = "delete from operations where id = ?";
-        jdbcTemplateObject.update(SQL, operation.getId());
+        jdbcTemplateObject.update(DELETE_SQL, operation.getId());
     }
 
     @Override
     public void update(Operation operation) {
-        String SQL = "update operations set result = ? where id = ?";
-        jdbcTemplateObject.update(SQL, operation.getResult(), operation.getId());
+        jdbcTemplateObject.update(UPDATE_SQL, operation.getResult(), operation.getId());
     }
 
     @Override
     public List<Operation> getAllByUser(User user) {
-        String SQL = "select * from operations join users on operations.author_id = users.user_id where user_id = ?";
-        return jdbcTemplateObject.query(SQL, new OperationMapper());
+        return jdbcTemplateObject.query(GET_ALL_BY_USER_SQL, new OperationMapper(), user.getId());
+    }
+
+    public List<Operation> getAllByUserWithOffset(User user, int limit, int offset) {
+        return jdbcTemplateObject.query(GET_ALL_BY_USER_SQL, new OperationMapper(), user.getId(), limit, offset);
     }
 }

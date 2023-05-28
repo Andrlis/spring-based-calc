@@ -1,5 +1,9 @@
 package by.tms.calc;
 
+import by.tms.calc.storage.OperationStorage;
+import by.tms.calc.storage.UserStorage;
+import by.tms.calc.storage.dao.OperationTemplateJDBC;
+import by.tms.calc.storage.dao.UserTemplateJDBC;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -36,5 +40,15 @@ public class WebConfiguration {
     dataSource.setPassword("root");
 
     return dataSource;
+  }
+
+  @Bean
+  public UserStorage userStorage(DataSource dataSource){
+    return new UserTemplateJDBC(dataSource);
+  }
+
+  @Bean
+  public OperationStorage operationStorage(DataSource dataSource){
+    return new OperationTemplateJDBC(dataSource);
   }
 }

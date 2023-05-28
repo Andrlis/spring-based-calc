@@ -16,10 +16,10 @@
 <jsp:include page="_header.jsp"/>
 <div class="col-md-4 offset-md-4 align-items-center mt-3">
     <div class="card">
-        <form action="calculate" method="post">
+        <form action="/user/login" method="post">
             <div class="input-group mb-3 p-3">
-                <label class="input-group-text" for="userame">Username</label>
-                <input class="form-control" type="text" id="userame" name="userame">
+                <label class="input-group-text" for="username">Username</label>
+                <input class="form-control" type="text" id="username" name="username">
                 <br>
                 <p class="error-message">${username}</p>
             </div>
