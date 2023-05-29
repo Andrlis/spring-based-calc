@@ -19,7 +19,7 @@ public class OperationCreationDTO {
 
 //    @NotBlank(message = "Not Black")
 //    @NotEmpty(message = "Not Empty")
-    private OperationType operationType;
+    private String operationType;
 
     public double getOperand1() {
         return operand1;
@@ -37,11 +37,11 @@ public class OperationCreationDTO {
         this.operand2 = operand2;
     }
 
-    public OperationType getOperationType() {
+    public String getOperationType() {
         return operationType;
     }
 
-    public void setOperationType(OperationType operationType) {
+    public void setOperationType(String operationType) {
         this.operationType = operationType;
     }
 }

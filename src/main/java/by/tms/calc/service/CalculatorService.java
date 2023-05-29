@@ -2,6 +2,7 @@ package by.tms.calc.service;
 
 import by.tms.calc.dto.OperationCreationDTO;
 import by.tms.calc.entity.*;
+import by.tms.calc.mapper.OperationCreationMapper;
 import by.tms.calc.mapper.SessionUserMapper;
 import by.tms.calc.storage.OperationStorage;
 import org.springframework.stereotype.Component;
@@ -24,11 +25,7 @@ public class CalculatorService {
 
 	public Optional<Operation> calculate(OperationCreationDTO operationCreationDTO) {
 		double result;
-		Operation operation = Operation.builder()
-				.setOperand1(operationCreationDTO.getOperand1())
-				.setOperand2(operationCreationDTO.getOperand2())
-				.setCreatedAt(LocalDateTime.now())
-				.build();
+		Operation operation = OperationCreationMapper.toOperation(operationCreationDTO);
 
 		switch (operation.getOperationType()) {
 			case SUM:
