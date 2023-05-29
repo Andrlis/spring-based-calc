@@ -30,28 +30,27 @@ public class CalculatorService {
 		switch (operation.getOperationType()) {
 			case SUM:
 				result = operation.getOperand1() + operation.getOperand2();
-				operation.builder().setResult(result).build();
+				operation.setResult(result);
 				return Optional.of(operation);
 			case SUB:
 				result = operation.getOperand1() - operation.getOperand2();
-				operation.builder().setResult(result).build();
+				operation.setResult(result);
 				return Optional.of(operation);
 			case MUL:
 				result = operation.getOperand1() * operation.getOperand2();
-				operation.builder().setResult(result).build();
+				operation.setResult(result);
 				return Optional.of(operation);
 			case DIV:
 				result = operation.getOperand1() / operation.getOperand2();
-				operation.builder().setResult(result).build();
+				operation.setResult(result);
 				return Optional.of(operation);
 		}
 		return Optional.empty();
 	}
 
 	public void save(Operation operation, SessionUser sessionUser) {
-		operation.builder()
-				.setCreatedAt(LocalDateTime.now())
-				.setAuthor(SessionUserMapper.toUser(sessionUser));
+		operation.setCreatedAt(LocalDateTime.now());
+		operation.setAuthor(SessionUserMapper.toUser(sessionUser));
 		operationStorage.save(operation);
 	}
 

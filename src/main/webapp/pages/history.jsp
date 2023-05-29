@@ -32,7 +32,7 @@
                 <tr>
                     <td>${operation.operand1}</td>
                     <td>${operation.operand2}</td>
-                    <td>${operation.operationType}</td>
+                    <td>${operation.operationType.toString()}</td>
                     <td>${operation.result}</td>
                     <td>${operation.author}</td>
                     <td>${operation.createdAt}</td>

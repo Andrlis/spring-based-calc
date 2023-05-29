@@ -3,6 +3,7 @@ package by.tms.calc.service;
 import by.tms.calc.dto.UserLoginDTO;
 import by.tms.calc.dto.UserRegistrationDTO;
 import by.tms.calc.entity.User;
+import by.tms.calc.mapper.UserRegistrationMapper;
 import by.tms.calc.storage.UserStorage;
 import org.springframework.stereotype.Component;
 
@@ -21,11 +22,7 @@ public class UserService {
     }
 
     public void save(UserRegistrationDTO userRegistrationDTO) {
-        User user = User.builder()
-                .setUsername(userRegistrationDTO.getUsername())
-                .setPassword(userRegistrationDTO.getPassword())
-                .setName(userRegistrationDTO.getName())
-                .build();
+        User user = UserRegistrationMapper.toUser(userRegistrationDTO);
         userStorage.save(user);
     }
 

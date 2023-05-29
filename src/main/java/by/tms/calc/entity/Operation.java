@@ -24,52 +24,6 @@ public class Operation {
     public Operation() {
     }
 
-    public static OperationBuilder builder() {
-        return new Operation().new OperationBuilder();
-    }
-
-    public class OperationBuilder {
-        private OperationBuilder() {
-        }
-
-        public OperationBuilder setId(long id){
-            Operation.this.id = id;
-            return this;
-        }
-
-        public OperationBuilder setOperand1(double operand1){
-            Operation.this.operand1 = operand1;
-            return this;
-        }
-
-        public OperationBuilder setOperand2(double operand2){
-            Operation.this.operand2 = operand2;
-            return this;
-        }
-
-        public OperationBuilder setOperationType(OperationType operationType){
-            Operation.this.operationType = operationType;
-            return this;
-        }
-
-        public OperationBuilder setResult(double result){
-            Operation.this.result = result;
-            return this;
-        }
-
-        public OperationBuilder setAuthor(User author){
-            Operation.this.author = author;
-            return this;
-        }
-
-        public OperationBuilder setCreatedAt(LocalDateTime createdAt){
-            Operation.this.createdAt = createdAt;
-            return this;
-        }
-
-        public Operation build(){return Operation.this;}
-    }
-
     public long getId() {
         return id;
     }
@@ -96,5 +50,33 @@ public class Operation {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setOperand1(double operand1) {
+        this.operand1 = operand1;
+    }
+
+    public void setOperand2(double operand2) {
+        this.operand2 = operand2;
+    }
+
+    public void setOperationType(OperationType operationType) {
+        this.operationType = operationType;
+    }
+
+    public void setResult(double result) {
+        this.result = result;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

@@ -12,11 +12,11 @@ import java.time.LocalDateTime;
 public class OperationCreationMapper {
 
     public static Operation toOperation(OperationCreationDTO operationCreationDTO){
-        return Operation.builder()
-                .setOperand1(operationCreationDTO.getOperand1())
-                .setOperand2(operationCreationDTO.getOperand2())
-                .setOperationType(OperationType.valueOf(operationCreationDTO.getOperationType()))
-                .setCreatedAt(LocalDateTime.now())
-                .build();
+        Operation operation = new Operation();
+        operation.setOperand1(operationCreationDTO.getOperand1());
+        operation.setOperand2(operationCreationDTO.getOperand2());
+        operation.setOperationType(OperationType.valueOf(operationCreationDTO.getOperationType()));
+
+        return operation;
     }
 }

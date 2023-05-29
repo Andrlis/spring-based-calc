@@ -21,14 +21,15 @@ public class OperationDaoMapper implements RowMapper<Operation> {
                 .setPassword(rs.getString("password"))
                 .build();
 
-        return Operation.builder()
-                .setId(rs.getLong("id"))
-                .setOperand1(rs.getDouble("operand1"))
-                .setOperand2(rs.getDouble("operand2"))
-                .setOperationType(OperationType.valueOf(rs.getString("operation_type")))
-                .setResult(rs.getDouble("result"))
-                .setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime())
-                .setAuthor(author)
-                .build();
+        Operation operation = new Operation();
+        operation.setId(rs.getLong("id"));
+        operation.setOperand1(rs.getDouble("operand1"));
+        operation.setOperand2(rs.getDouble("operand2"));
+        operation.setOperationType(OperationType.valueOf(rs.getString("operation_type")));
+        operation.setResult(rs.getDouble("result"));
+        operation.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+        operation.setAuthor(author);
+
+        return operation;
     }
 }
